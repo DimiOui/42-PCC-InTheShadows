@@ -35,7 +35,7 @@ protected:
 
 	// Movement speed
 	UPROPERTY(EditAnywhere, Category = "Character Settings");
-	float					MovementSpeed = 10.0f;
+	float MovementSpeed = 10.0f;
 
 public:
 	// Called every frame
