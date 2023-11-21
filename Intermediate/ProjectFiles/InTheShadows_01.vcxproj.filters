@@ -44,6 +44,12 @@
     <ClInclude Include="..\..\Source\InTheShadows_01Editor\InTheShadows_01Editor.h">
       <Filter>Source\InTheShadows_01Editor</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\InTheShadows_01Editor\MoveComponentVisualizer.cpp">
+      <Filter>Source\InTheShadows_01Editor</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\InTheShadows_01Editor\MoveComponentVisualizer.h">
+      <Filter>Source\InTheShadows_01Editor</Filter>
+    </ClInclude>
     <Filter Include="Source\InTheShadows_01">
       <UniqueIdentifier>{04BDF7BB-3C24-3963-98AD-D14AA802B5D4}</UniqueIdentifier>
     </Filter>
@@ -66,6 +72,12 @@
       <Filter>Source\InTheShadows_01</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\InTheShadows_01\MinimalLevelGameMode.h">
+      <Filter>Source\InTheShadows_01</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\InTheShadows_01\MoveComponent.cpp">
+      <Filter>Source\InTheShadows_01</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\InTheShadows_01\MoveComponent.h">
       <Filter>Source\InTheShadows_01</Filter>
     </ClInclude>
   </ItemGroup>
