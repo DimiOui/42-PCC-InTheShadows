@@ -12,7 +12,10 @@
       <Filter>Source</Filter>
     </None>
     <None Include="..\..\.editorconfig" />
+    <None Include="..\..\.gitattributes" />
+    <None Include="..\..\.gitignore" />
     <None Include="..\..\.vsconfig" />
+    <None Include="..\..\README.md" />
     <None Include="..\..\shadertoolsconfig.json" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
@@ -29,6 +32,18 @@
     <None Include="..\..\Config\DefaultInput.ini">
       <Filter>Config</Filter>
     </None>
+    <Filter Include="Source\InTheShadows_01Editor">
+      <UniqueIdentifier>{DB16C056-A23B-3313-8869-A9E7FA04943B}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\InTheShadows_01Editor\InTheShadows_01Editor.Build.cs">
+      <Filter>Source\InTheShadows_01Editor</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\InTheShadows_01Editor\InTheShadows_01Editor.cpp">
+      <Filter>Source\InTheShadows_01Editor</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\InTheShadows_01Editor\InTheShadows_01Editor.h">
+      <Filter>Source\InTheShadows_01Editor</Filter>
+    </ClInclude>
     <Filter Include="Source\InTheShadows_01">
       <UniqueIdentifier>{04BDF7BB-3C24-3963-98AD-D14AA802B5D4}</UniqueIdentifier>
     </Filter>

@@ -17,6 +17,7 @@
   <ItemGroup>
   <Compile Include="..\..\..\..\Source\InTheShadows_01.Target.cs"><Link>Source\InTheShadows_01.Target.cs</Link></Compile>
   <Compile Include="..\..\..\..\Source\InTheShadows_01Editor.Target.cs"><Link>Source\InTheShadows_01Editor.Target.cs</Link></Compile>
+  <Compile Include="..\..\..\..\Source\InTheShadows_01Editor\InTheShadows_01Editor.Build.cs"><Link>Source\InTheShadows_01Editor\InTheShadows_01Editor.Build.cs</Link></Compile>
   <Compile Include="..\..\..\..\Source\InTheShadows_01\InTheShadows_01.Build.cs"><Link>Source\InTheShadows_01\InTheShadows_01.Build.cs</Link></Compile>
   </ItemGroup>
 </Project>

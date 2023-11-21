@@ -10,6 +10,6 @@ public class InTheShadows_01EditorTarget : TargetRules
 		Type = TargetType.Editor;
 		DefaultBuildSettings = BuildSettingsVersion.V4;
 		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_3;
-		ExtraModuleNames.Add("InTheShadows_01");
-	}
+        ExtraModuleNames.AddRange(new string[] { "InTheShadows_01", "InTheShadows_01Editor" });
+    }
 }
