@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"E:\\UE5Projects\\InTheShadows_01\\Source\\InTheShadows_01\\InTheShadows_01.Build.cs",
+		"E:\\UE5Projects\\InTheShadows_01\\Source\\InTheShadows_01.Target.cs",
+		"E:\\UE5Projects\\InTheShadows_01\\Source\\InTheShadows_01Editor.Target.cs"
+	],
+	"EngineVersion": "5.3.2"
+}

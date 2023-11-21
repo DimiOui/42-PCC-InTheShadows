@@ -1,0 +1,24 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"E:/UE5Projects/InTheShadows_01/Content/Levels/MinimalLevel.umap",
+				"E:/UE5Projects/InTheShadows_01/Content/Levels/MinimalLevel_BuiltData.uasset",
+				"E:/UE5Projects/InTheShadows_01/Content/MinimalLevelGameMode.uasset",
+				"E:/UE5Projects/InTheShadows_01/Content/Blueprints/BP_MinimalLevelGameMode.uasset",
+				"E:/UE5Projects/InTheShadows_01/Content/Blueprints/Objects/BP_GameCharacter.uasset",
+				"E:/UE5Projects/InTheShadows_01/Content/Blueprints/Objects/BP_MinimalLevelGameMode.uasset",
+				"E:/UE5Projects/InTheShadows_01/Content/Blueprints/Input/Actions/IA_Move.uasset",
+				"E:/UE5Projects/InTheShadows_01/Content/Blueprints/Input/IMC_Default.uasset",
+				"E:/UE5Projects/InTheShadows_01/Content/BP_GameCharacter.uasset",
+				"E:/UE5Projects/InTheShadows_01/Content/Blueprints/BP_GameCharacter.uasset",
+				"E:/UE5Projects/InTheShadows_01/Content/Blueprints/Input/Actions/Move.uasset",
+				"E:/UE5Projects/InTheShadows_01/Content/GameMode/MinimalLevelGameMode.uasset",
+				"E:/UE5Projects/InTheShadows_01/Content/Blueprints/MinimalLevelGameMode.uasset"
+			]
+		}
+	]
+}
