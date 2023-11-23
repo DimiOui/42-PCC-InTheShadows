@@ -6,8 +6,8 @@
 #include "Components/SceneComponent.h"
 #include "MoveComponent.generated.h"
 
-//UDELEGATE(BlueprintAuthorityOnly)
-//DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMoveComponentReachEndPointSignature, bool, bIsEndPoint);
+UDELEGATE(BlueprintAuthorityOnly)
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMoveComponentReachEndPointSignature, bool, bIsEndPoint);
 
 UCLASS(ClassGroup = (InTheShadows_01), meta = (BlueprintSpawnableComponent))
 class INTHESHADOWS_01_API UMoveComponent : public USceneComponent
@@ -18,6 +18,7 @@ public:
 	// Sets default values for this component's properties
 	UMoveComponent();
 
+	// Expose functions to blueprint
 	UFUNCTION(BlueprintCallable)
 	void EnableMovement(bool bShouldMove);
 
@@ -51,8 +52,8 @@ private:
 	bool bEnableMovement = true;
 
 	// On Extreme position
-	UPROPERTY(EditAnywhere)
-	//FOnMoveComponentReachEndPointSignature OnEndpointReached;
+	UPROPERTY(BlueprintAssignable)
+	FOnMoveComponentReachEndPointSignature OnEndpointReached;
 
 	// Computed locations
 	FVector StartRelativeLocation;

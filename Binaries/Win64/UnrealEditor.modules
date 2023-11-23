@@ -2,7 +2,7 @@
 	"BuildId": "27405482",
 	"Modules": 
 	{
-		"InTheShadows_01": "UnrealEditor-InTheShadows_01-0055.dll",
-		"InTheShadows_01Editor": "UnrealEditor-InTheShadows_01Editor-0921.dll"
+		"InTheShadows_01": "UnrealEditor-InTheShadows_01.dll",
+		"InTheShadows_01Editor": "UnrealEditor-InTheShadows_01Editor.dll"
 	}
 }
