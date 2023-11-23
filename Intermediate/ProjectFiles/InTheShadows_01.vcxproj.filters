@@ -53,6 +53,12 @@
     <Filter Include="Source\InTheShadows_01">
       <UniqueIdentifier>{04BDF7BB-3C24-3963-98AD-D14AA802B5D4}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\InTheShadows_01\CollectableActor.cpp">
+      <Filter>Source\InTheShadows_01</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\InTheShadows_01\CollectableActor.h">
+      <Filter>Source\InTheShadows_01</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\InTheShadows_01\GameCharacter.cpp">
       <Filter>Source\InTheShadows_01</Filter>
     </ClCompile>
