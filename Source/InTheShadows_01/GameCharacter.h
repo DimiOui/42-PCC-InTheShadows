@@ -20,7 +20,8 @@ public:
 	// Delta movement
 	void MoveLr(float MovementDelta);
 	void MoveFb(float MovementDelta);
-
+	void Rotate(float MovementDelta);
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -32,6 +33,9 @@ protected:
 	// Pawn mesh
 	UPROPERTY(EditAnywhere);
 	UStaticMeshComponent* CameraMesh;
+
+	UPROPERTY(EditAnywhere, Category = "Character Settings");
+	float RotationSpeed = 1.0f;
 
 	// Movement speed
 	UPROPERTY(EditAnywhere, Category = "Character Settings");

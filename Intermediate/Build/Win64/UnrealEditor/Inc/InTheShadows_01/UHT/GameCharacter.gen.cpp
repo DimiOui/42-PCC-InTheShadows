@@ -39,6 +39,10 @@ void EmptyLinkFunctionForGeneratedCodeGameCharacter() {}
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_CameraMesh;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RotationSpeed_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_RotationSpeed;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_MovementSpeed_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_MovementSpeed;
@@ -87,6 +91,13 @@ void EmptyLinkFunctionForGeneratedCodeGameCharacter() {}
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AGameCharacter_Statics::NewProp_CameraMesh = { "CameraMesh", nullptr, (EPropertyFlags)0x0020080000080009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AGameCharacter, CameraMesh), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AGameCharacter_Statics::NewProp_CameraMesh_MetaData), Z_Construct_UClass_AGameCharacter_Statics::NewProp_CameraMesh_MetaData) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AGameCharacter_Statics::NewProp_RotationSpeed_MetaData[] = {
+		{ "Category", "Character Settings" },
+		{ "ModuleRelativePath", "GameCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AGameCharacter_Statics::NewProp_RotationSpeed = { "RotationSpeed", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AGameCharacter, RotationSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AGameCharacter_Statics::NewProp_RotationSpeed_MetaData), Z_Construct_UClass_AGameCharacter_Statics::NewProp_RotationSpeed_MetaData) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AGameCharacter_Statics::NewProp_MovementSpeed_MetaData[] = {
 		{ "Category", "Character Settings" },
 #if !UE_BUILD_SHIPPING
@@ -102,6 +113,7 @@ void EmptyLinkFunctionForGeneratedCodeGameCharacter() {}
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AGameCharacter_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGameCharacter_Statics::NewProp_Camera,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGameCharacter_Statics::NewProp_CameraMesh,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGameCharacter_Statics::NewProp_RotationSpeed,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGameCharacter_Statics::NewProp_MovementSpeed,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AGameCharacter_Statics::StaticCppClassTypeInfo = {
@@ -142,9 +154,9 @@ void EmptyLinkFunctionForGeneratedCodeGameCharacter() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_InTheShadows_01_Source_InTheShadows_01_GameCharacter_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AGameCharacter, AGameCharacter::StaticClass, TEXT("AGameCharacter"), &Z_Registration_Info_UClass_AGameCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AGameCharacter), 2794575038U) },
+		{ Z_Construct_UClass_AGameCharacter, AGameCharacter::StaticClass, TEXT("AGameCharacter"), &Z_Registration_Info_UClass_AGameCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AGameCharacter), 54206366U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_InTheShadows_01_Source_InTheShadows_01_GameCharacter_h_1252848362(TEXT("/Script/InTheShadows_01"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_InTheShadows_01_Source_InTheShadows_01_GameCharacter_h_2593728074(TEXT("/Script/InTheShadows_01"),
 		Z_CompiledInDeferFile_FID_InTheShadows_01_Source_InTheShadows_01_GameCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_InTheShadows_01_Source_InTheShadows_01_GameCharacter_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

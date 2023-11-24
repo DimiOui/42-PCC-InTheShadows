@@ -75,4 +75,3 @@ void UMoveComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 	// Compute and set current location
 	SetRelativeLocation(StartRelativeLocation + MoveOffsetNorm * CurrentDistance);
 }
-

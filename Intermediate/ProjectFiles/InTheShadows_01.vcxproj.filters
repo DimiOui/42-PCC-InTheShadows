@@ -59,6 +59,12 @@
     <ClInclude Include="..\..\Source\InTheShadows_01\CollectableActor.h">
       <Filter>Source\InTheShadows_01</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\InTheShadows_01\CollectAcceptable.cpp">
+      <Filter>Source\InTheShadows_01</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\InTheShadows_01\CollectAcceptable.h">
+      <Filter>Source\InTheShadows_01</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\InTheShadows_01\GameCharacter.cpp">
       <Filter>Source\InTheShadows_01</Filter>
     </ClCompile>

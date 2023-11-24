@@ -23,7 +23,7 @@ AGameCharacter::AGameCharacter()
 void AGameCharacter::MoveLr(float MovementDelta)
 {
 	FVector NewLocation = GetActorLocation();
-	NewLocation.Y += MovementDelta * MovementSpeed;
+	NewLocation += GetActorRightVector() * MovementDelta * MovementSpeed;
 	SetActorLocation(NewLocation);
 }
 
@@ -31,8 +31,16 @@ void AGameCharacter::MoveLr(float MovementDelta)
 void AGameCharacter::MoveFb(float MovementDelta)
 {
 	FVector NewLocation = GetActorLocation();
-	NewLocation.X += MovementDelta * MovementSpeed;
+	NewLocation += GetActorForwardVector() * MovementDelta * MovementSpeed;
 	SetActorLocation(NewLocation);
+}
+
+// Rotate the character
+void AGameCharacter::Rotate(float MovementDelta)
+{
+	auto NewRotation = GetActorRotation();
+	NewRotation.Yaw += MovementDelta * RotationSpeed;
+	SetActorRotation(NewRotation);
 }
 
 // Called when the game starts or when spawned
@@ -57,5 +65,5 @@ void AGameCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	// Register input
 	PlayerInputComponent->BindAxis((TEXT("MoveLR")), this, &AGameCharacter::MoveLr);
 	PlayerInputComponent->BindAxis((TEXT("MoveFB")), this, &AGameCharacter::MoveFb);
+	PlayerInputComponent->BindAxis((TEXT("Rotate")), this, &AGameCharacter::Rotate);
 }
-
