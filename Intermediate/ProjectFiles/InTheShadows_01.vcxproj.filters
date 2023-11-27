@@ -65,10 +65,22 @@
     <ClInclude Include="..\..\Source\InTheShadows_01\CollectAcceptable.h">
       <Filter>Source\InTheShadows_01</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\InTheShadows_01\CollectibleSpawner.cpp">
+      <Filter>Source\InTheShadows_01</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\InTheShadows_01\CollectibleSpawner.h">
+      <Filter>Source\InTheShadows_01</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\InTheShadows_01\GameCharacter.cpp">
       <Filter>Source\InTheShadows_01</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\InTheShadows_01\GameCharacter.h">
+      <Filter>Source\InTheShadows_01</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\InTheShadows_01\GameCharacterTwo.cpp">
+      <Filter>Source\InTheShadows_01</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\InTheShadows_01\GameCharacterTwo.h">
       <Filter>Source\InTheShadows_01</Filter>
     </ClInclude>
     <None Include="..\..\Source\InTheShadows_01\InTheShadows_01.Build.cs">

@@ -4,7 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameCharacter.h"
+#include "GameCharacterTwo.h"
 #include "GameFramework/GameModeBase.h"
+#include "GameFramework/DefaultPawn.h"
 #include "MinimalLevelGameMode.generated.h"
 
 /**
