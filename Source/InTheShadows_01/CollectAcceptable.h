@@ -24,5 +24,4 @@ class INTHESHADOWS_01_API ICollectAcceptable
 public:
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
 	void Collect(UObject* SourceObj, float Count);
-
 };

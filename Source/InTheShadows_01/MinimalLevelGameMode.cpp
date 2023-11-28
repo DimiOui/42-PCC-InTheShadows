@@ -6,5 +6,5 @@
 AMinimalLevelGameMode::AMinimalLevelGameMode()
 {
 	if (DefaultPawnClass == ADefaultPawn::StaticClass() || !DefaultPawnClass)
-	DefaultPawnClass = AGameCharacter::StaticClass();
+		DefaultPawnClass = AGameCharacter::StaticClass();
 }

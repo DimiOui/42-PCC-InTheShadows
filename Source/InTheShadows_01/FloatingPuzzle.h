@@ -17,14 +17,18 @@ UCLASS(Blueprintable)
 class INTHESHADOWS_01_API AFloatingPuzzle : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	AFloatingPuzzle();
+
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
 
 	// Components
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
@@ -55,16 +59,15 @@ protected:
 
 	// Overlap Events
 	UFUNCTION()
-	void OnSphereBeginOverlap(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	void OnSphereBeginOverlap(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor,
+	                          class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep,
+	                          const FHitResult& SweepResult);
 
 	UFUNCTION()
-	void OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	void OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+	                        UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
 private:
 	bool bIsFloating = false;
 	float StartLocation;
-
 };

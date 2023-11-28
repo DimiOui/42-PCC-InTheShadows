@@ -16,7 +16,6 @@ ACollectableActor::ACollectableActor()
 	// Create the box collider
 	BoxCollider = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollider"));
 	BoxCollider->SetupAttachment(CollectableMesh);
-
 }
 
 // Called when the game starts or when spawned
@@ -31,7 +30,6 @@ void ACollectableActor::BeginPlay()
 
 	// Ticking required after launching only
 	SetActorTickEnabled(false);
-
 }
 
 // Jumping function
@@ -47,10 +45,11 @@ void ACollectableActor::Jump(float Velocity)
 		SetActorTickEnabled(true);
 		IsLaunched = true;
 	}
-
 }
 
-void ACollectableActor::OnComponentBeginOverlap(class UBoxComponent* Component, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void ACollectableActor::OnComponentBeginOverlap(class UBoxComponent* Component, class AActor* OtherActor,
+                                                class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,
+                                                bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (!IsLaunched && OtherActor->IsA(TriggerClass))
 	{
@@ -74,6 +73,4 @@ void ACollectableActor::Tick(float DeltaTime)
 			Destroy();
 		}
 	}
-
 }
-

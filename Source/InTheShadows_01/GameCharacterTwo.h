@@ -35,20 +35,20 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
-	UInputMappingContext *BaseMappingContext;
+	UInputMappingContext* BaseMappingContext;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
-	UInputAction *MoveAction;
+	UInputAction* MoveAction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
-	UInputAction *LookAction;
+	UInputAction* LookAction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
-	UInputAction *InteractAction;
+	UInputAction* InteractAction;
 
-	void Move(const FInputActionValue &Value);
-	void Look(const FInputActionValue &Value);
-	void Interact(const FInputActionValue &Value);
+	void Move(const FInputActionValue& Value);
+	void Look(const FInputActionValue& Value);
+	void Interact(const FInputActionValue& Value);
 
 private:
 	// Mesh being displayed
@@ -61,5 +61,4 @@ private:
 	// Camera to view the scene
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* FollowCamera;
-
 };

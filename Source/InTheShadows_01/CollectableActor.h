@@ -9,19 +9,23 @@
 #include "CollectableActor.generated.h"
 
 UDELEGATE(BlueprintAuthorityOnly)
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnJumpTriggerSignature, AActor*, OtherActor, UPrimitiveComponent*, OtherComp);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnJumpTriggerSignature, AActor*, OtherActor, UPrimitiveComponent*,
+                                             OtherComp);
 
 UCLASS()
 class INTHESHADOWS_01_API ACollectableActor : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	ACollectableActor();
 
 	UFUNCTION(BlueprintCallable)
 	void Jump(float Velocity);
+
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
 
 protected:
 	// Called when the game starts or when spawned
@@ -39,11 +43,9 @@ protected:
 
 	// Called when an actor overlaps with the box collider
 	UFUNCTION()
-	void OnComponentBeginOverlap(class UBoxComponent *Component, class AActor* OtherActor, class UPrimitiveComponent *OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult &SweepResult);
-
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	void OnComponentBeginOverlap(class UBoxComponent* Component, class AActor* OtherActor,
+	                             class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep,
+	                             const FHitResult& SweepResult);
 
 private:
 	// Static Mesh for rendering
@@ -58,5 +60,4 @@ private:
 	FOnJumpTriggerSignature OnJumpTrigger;
 
 	bool IsLaunched = false;
-
 };

@@ -11,10 +11,18 @@ UCLASS()
 class INTHESHADOWS_01_API ACollectibleSpawner : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	ACollectibleSpawner();
+
+	// Will spawn an actor if the spawn box is valid
+	UFUNCTION(BlueprintCallable)
+	bool SpawnActor();
+
+	// Change if actors are spawned
+	UFUNCTION(BlueprintCallable)
+	void EnableSpawning(bool bEnable);
 
 protected:
 	// Called when the game starts or when spawned
@@ -35,19 +43,10 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float RandomSpawnTimeOffset = 1.f;
 
-public:	
-	// Will spawn an actor if the spawn box is valid
-	UFUNCTION(BlueprintCallable)
-	bool SpawnActor();
-
-	// Change if actors are spawned
-	UFUNCTION(BlueprintCallable)
-	void EnableSpawning(bool bEnable);
-
 private:
 	// Box component to specify the spawn area
 	UPROPERTY(EditDefaultsOnly)
-	UBoxComponent *SpawnBox;
+	UBoxComponent* SpawnBox;
 
 	UFUNCTION()
 	void SpawnActorScheduled();

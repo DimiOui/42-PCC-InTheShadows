@@ -6,20 +6,19 @@
 // Sets default values
 ACollectibleSpawner::ACollectibleSpawner()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
 	// Setup members
 	SpawnBox = CreateDefaultSubobject<UBoxComponent>(TEXT("SpawnBox"));
 	RootComponent = SpawnBox;
-
 }
 
 // Called when the game starts or when spawned
 void ACollectibleSpawner::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 	// Schedule the first spawn
 	if (bShouldSpawn)
 		ScheduleNextSpawn();
@@ -48,7 +47,7 @@ bool ACollectibleSpawner::SpawnActor()
 		SpawnOrigin.X += -BoxBounds.BoxExtent.X + 2 * BoxBounds.BoxExtent.X * FMath::FRand();
 		SpawnOrigin.Y += -BoxBounds.BoxExtent.Y + 2 * BoxBounds.BoxExtent.Y * FMath::FRand();
 		SpawnOrigin.Z += -BoxBounds.BoxExtent.Z + 2 * BoxBounds.BoxExtent.Z * FMath::FRand();
-		
+
 		// Spawn the actor
 		bSpawned = GetWorld()->SpawnActor(ActorToSpawn, &SpawnOrigin) != nullptr;
 	}
@@ -80,5 +79,6 @@ void ACollectibleSpawner::ScheduleNextSpawn()
 	// Compute time offset to spawn the next actor
 	float DeltaToNextSpawn = AverageSpawnDelay + (-RandomSpawnTimeOffset + 2 * RandomSpawnTimeOffset * FMath::FRand());
 	// Schedule spawning
-	GetWorldTimerManager().SetTimer(SpawnTimerHandle, this, &ACollectibleSpawner::SpawnActorScheduled, DeltaToNextSpawn, false);
+	GetWorldTimerManager().SetTimer(SpawnTimerHandle, this, &ACollectibleSpawner::SpawnActorScheduled, DeltaToNextSpawn,
+	                                false);
 }

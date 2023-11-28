@@ -19,5 +19,4 @@ class INTHESHADOWS_01_API AMinimalLevelGameMode : public AGameModeBase
 
 public:
 	AMinimalLevelGameMode();
-
 };

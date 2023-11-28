@@ -47,14 +47,12 @@ void AGameCharacter::Rotate(float MovementDelta)
 void AGameCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-
 }
 
 // Called every frame
 void AGameCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 // Called to bind functionality to input

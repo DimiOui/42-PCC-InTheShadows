@@ -22,7 +22,7 @@ AFloatingPuzzle::AFloatingPuzzle()
 
 	RotatingMovement = CreateDefaultSubobject<URotatingMovementComponent>("RotatingMovement");
 
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	bIsFloating = true;
 }
@@ -45,7 +45,9 @@ void AFloatingPuzzle::BeginPlay()
 	}
 }
 
-void AFloatingPuzzle::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void AFloatingPuzzle::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+                                           UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep,
+                                           const FHitResult& SweepResult)
 {
 	if (AGameCharacterTwo* GameCharacter = Cast<AGameCharacterTwo>(OtherActor))
 	{
@@ -53,7 +55,8 @@ void AFloatingPuzzle::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedCompon
 	}
 }
 
-void AFloatingPuzzle::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+void AFloatingPuzzle::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+                                         UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
 	if (AGameCharacterTwo* GameCharacter = Cast<AGameCharacterTwo>(OtherActor))
 	{
@@ -75,4 +78,3 @@ void AFloatingPuzzle::Tick(const float DeltaTime)
 
 	FloatingTimeline.TickTimeline(DeltaTime);
 }
-

@@ -48,6 +48,7 @@ void AGameCharacterTwo::BeginPlay()
 void AGameCharacterTwo::Move(const FInputActionValue& Value)
 {
 	// Setup example for a float 1D axis for forward/backward movement
+
 	/*const float AxisValue = Value.Get<float>();
 	if (Controller && AxisValue != 0.0f)
 	{
@@ -74,8 +75,7 @@ void AGameCharacterTwo::Look(const FInputActionValue& Value)
 
 void AGameCharacterTwo::Interact(const FInputActionValue& Value)
 {
-	const bool CurrentValue = Value.Get<bool>();
-	if (CurrentValue)
+	if (const bool CurrentValue = Value.Get<bool>())
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Interact"));
 	}
