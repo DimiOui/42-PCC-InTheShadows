@@ -1529,6 +1529,9 @@
     <ClInclude Include="..\..\Source\InTheShadows_01\InTheShadows_01.h">
       <Filter>Source\InTheShadows_01</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\InTheShadows_01\ItemDataStructs.h">
+      <Filter>Source\InTheShadows_01</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\InTheShadows_01\MinimalLevelGameMode.cpp">
       <Filter>Source\InTheShadows_01</Filter>
     </ClCompile>
@@ -1539,6 +1542,9 @@
       <Filter>Source\InTheShadows_01</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\InTheShadows_01\MoveComponent.h">
+      <Filter>Source\InTheShadows_01</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\InTheShadows_01\PuzzleDataStruct.h">
       <Filter>Source\InTheShadows_01</Filter>
     </ClInclude>
   </ItemGroup>
