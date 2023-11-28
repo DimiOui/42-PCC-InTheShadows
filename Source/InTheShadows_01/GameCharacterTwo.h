@@ -13,6 +13,7 @@ class UInputAction;
 class UStaticMeshComponent;
 class UCameraComponent;
 class USpringArmComponent;
+class AFloatingPuzzle;
 
 UCLASS()
 class INTHESHADOWS_01_API AGameCharacterTwo : public ACharacter
@@ -42,8 +43,12 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	UInputAction *LookAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+	UInputAction *InteractAction;
+
 	void Move(const FInputActionValue &Value);
 	void Look(const FInputActionValue &Value);
+	void Interact(const FInputActionValue &Value);
 
 private:
 	// Mesh being displayed
@@ -56,4 +61,5 @@ private:
 	// Camera to view the scene
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* FollowCamera;
+
 };

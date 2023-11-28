@@ -15,6 +15,13 @@
     <ProjectReference Include="D:\Epic\UE_5.3\Engine\Source\Programs\UnrealBuildTool\UnrealBuildTool.csproj"><Private>false</Private></ProjectReference>
   </ItemGroup>
   <ItemGroup>
+  <Compile Include="..\..\..\..\Plugins\Developer\RiderLink\Source\RD\RD.Build.cs"><Link>Plugins\Developer\RiderLink\Source\RD\RD.Build.cs</Link></Compile>
+  <Compile Include="..\..\..\..\Plugins\Developer\RiderLink\Source\RiderBlueprint\RiderBlueprint.Build.cs"><Link>Plugins\Developer\RiderLink\Source\RiderBlueprint\RiderBlueprint.Build.cs</Link></Compile>
+  <Compile Include="..\..\..\..\Plugins\Developer\RiderLink\Source\RiderGameControl\RiderGameControl.Build.cs"><Link>Plugins\Developer\RiderLink\Source\RiderGameControl\RiderGameControl.Build.cs</Link></Compile>
+  <Compile Include="..\..\..\..\Plugins\Developer\RiderLink\Source\RiderLC\RiderLC.Build.cs"><Link>Plugins\Developer\RiderLink\Source\RiderLC\RiderLC.Build.cs</Link></Compile>
+  <Compile Include="..\..\..\..\Plugins\Developer\RiderLink\Source\RiderLink\RiderLink.Build.cs"><Link>Plugins\Developer\RiderLink\Source\RiderLink\RiderLink.Build.cs</Link></Compile>
+  <Compile Include="..\..\..\..\Plugins\Developer\RiderLink\Source\RiderLogging\RiderLogging.Build.cs"><Link>Plugins\Developer\RiderLink\Source\RiderLogging\RiderLogging.Build.cs</Link></Compile>
+  <Compile Include="..\..\..\..\Plugins\Developer\RiderLink\Source\RiderShaderInfo\RiderShaderInfo.Build.cs"><Link>Plugins\Developer\RiderLink\Source\RiderShaderInfo\RiderShaderInfo.Build.cs</Link></Compile>
   <Compile Include="..\..\..\..\Source\InTheShadows_01.Target.cs"><Link>Source\InTheShadows_01.Target.cs</Link></Compile>
   <Compile Include="..\..\..\..\Source\InTheShadows_01Editor.Target.cs"><Link>Source\InTheShadows_01Editor.Target.cs</Link></Compile>
   <Compile Include="..\..\..\..\Source\InTheShadows_01Editor\InTheShadows_01Editor.Build.cs"><Link>Source\InTheShadows_01Editor\InTheShadows_01Editor.Build.cs</Link></Compile>

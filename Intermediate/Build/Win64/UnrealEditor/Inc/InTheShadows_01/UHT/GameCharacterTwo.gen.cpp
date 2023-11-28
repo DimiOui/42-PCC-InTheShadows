@@ -46,6 +46,10 @@ void EmptyLinkFunctionForGeneratedCodeGameCharacterTwo() {}
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_LookAction;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_InteractAction_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_InteractAction;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_PlayerMesh_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_PlayerMesh;
@@ -95,6 +99,13 @@ void EmptyLinkFunctionForGeneratedCodeGameCharacterTwo() {}
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AGameCharacterTwo_Statics::NewProp_LookAction = { "LookAction", nullptr, (EPropertyFlags)0x0020080000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AGameCharacterTwo, LookAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AGameCharacterTwo_Statics::NewProp_LookAction_MetaData), Z_Construct_UClass_AGameCharacterTwo_Statics::NewProp_LookAction_MetaData) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AGameCharacterTwo_Statics::NewProp_InteractAction_MetaData[] = {
+		{ "Category", "Input" },
+		{ "ModuleRelativePath", "GameCharacterTwo.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AGameCharacterTwo_Statics::NewProp_InteractAction = { "InteractAction", nullptr, (EPropertyFlags)0x0020080000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AGameCharacterTwo, InteractAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AGameCharacterTwo_Statics::NewProp_InteractAction_MetaData), Z_Construct_UClass_AGameCharacterTwo_Statics::NewProp_InteractAction_MetaData) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AGameCharacterTwo_Statics::NewProp_PlayerMesh_MetaData[] = {
 		{ "Category", "GameCharacterTwo" },
 #if !UE_BUILD_SHIPPING
@@ -142,6 +153,7 @@ void EmptyLinkFunctionForGeneratedCodeGameCharacterTwo() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGameCharacterTwo_Statics::NewProp_BaseMappingContext,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGameCharacterTwo_Statics::NewProp_MoveAction,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGameCharacterTwo_Statics::NewProp_LookAction,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGameCharacterTwo_Statics::NewProp_InteractAction,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGameCharacterTwo_Statics::NewProp_PlayerMesh,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGameCharacterTwo_Statics::NewProp_CameraBoom,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGameCharacterTwo_Statics::NewProp_FollowCamera,
@@ -184,9 +196,9 @@ void EmptyLinkFunctionForGeneratedCodeGameCharacterTwo() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_InTheShadows_01_Source_InTheShadows_01_GameCharacterTwo_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AGameCharacterTwo, AGameCharacterTwo::StaticClass, TEXT("AGameCharacterTwo"), &Z_Registration_Info_UClass_AGameCharacterTwo, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AGameCharacterTwo), 1537753094U) },
+		{ Z_Construct_UClass_AGameCharacterTwo, AGameCharacterTwo::StaticClass, TEXT("AGameCharacterTwo"), &Z_Registration_Info_UClass_AGameCharacterTwo, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AGameCharacterTwo), 2726414353U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_InTheShadows_01_Source_InTheShadows_01_GameCharacterTwo_h_1370413133(TEXT("/Script/InTheShadows_01"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_InTheShadows_01_Source_InTheShadows_01_GameCharacterTwo_h_4232954174(TEXT("/Script/InTheShadows_01"),
 		Z_CompiledInDeferFile_FID_InTheShadows_01_Source_InTheShadows_01_GameCharacterTwo_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_InTheShadows_01_Source_InTheShadows_01_GameCharacterTwo_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

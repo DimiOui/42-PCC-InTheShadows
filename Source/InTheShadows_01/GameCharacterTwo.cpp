@@ -12,7 +12,7 @@
 // Sets default values
 AGameCharacterTwo::AGameCharacterTwo()
 {
- 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it
 	PrimaryActorTick.bCanEverTick = true;
 
 	// Setup component hierarchy
@@ -28,17 +28,17 @@ AGameCharacterTwo::AGameCharacterTwo()
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	FollowCamera->bUsePawnControlRotation = false;
-
 }
 
 // Called when the game starts or when spawned
 void AGameCharacterTwo::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	if (APlayerController *PlayerController = Cast<APlayerController>(GetController()))
+
+	if (APlayerController* PlayerController = Cast<APlayerController>(GetController()))
 	{
-		if (UEnhancedInputLocalPlayerSubsystem *Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
+		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<
+			UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
 		{
 			Subsystem->AddMappingContext(BaseMappingContext, 0);
 		}
@@ -72,11 +72,19 @@ void AGameCharacterTwo::Look(const FInputActionValue& Value)
 	}
 }
 
+void AGameCharacterTwo::Interact(const FInputActionValue& Value)
+{
+	const bool CurrentValue = Value.Get<bool>();
+	if (CurrentValue)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Interact"));
+	}
+}
+
 // Called every frame
 void AGameCharacterTwo::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 // Called to bind functionality to input
@@ -89,9 +97,12 @@ void AGameCharacterTwo::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	{
 		// Movement
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AGameCharacterTwo::Move);
-		
+
 		// Look
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AGameCharacterTwo::Look);
-	}
 
+		// Interact
+		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Triggered, this,
+		                                   &AGameCharacterTwo::Interact);
+	}
 }
