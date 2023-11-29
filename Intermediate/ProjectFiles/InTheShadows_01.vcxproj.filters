@@ -15,6 +15,7 @@
     <None Include="..\..\.gitattributes" />
     <None Include="..\..\.gitignore" />
     <None Include="..\..\.vsconfig" />
+    <None Include="..\..\InTheShadows_01.sln.DotSettings.user" />
     <None Include="..\..\README.md" />
     <None Include="..\..\shadertoolsconfig.json" />
     <Filter Include="Config">
@@ -1484,6 +1485,12 @@
     <Filter Include="Source\InTheShadows_01">
       <UniqueIdentifier>{04BDF7BB-3C24-3963-98AD-D14AA802B5D4}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\InTheShadows_01\CharacterHUD.cpp">
+      <Filter>Source\InTheShadows_01</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\InTheShadows_01\CharacterHUD.h">
+      <Filter>Source\InTheShadows_01</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\InTheShadows_01\CollectableActor.cpp">
       <Filter>Source\InTheShadows_01</Filter>
     </ClCompile>
@@ -1520,6 +1527,24 @@
     <ClInclude Include="..\..\Source\InTheShadows_01\GameCharacterTwo.h">
       <Filter>Source\InTheShadows_01</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\InTheShadows_01\InteractionInterface.cpp">
+      <Filter>Source\InTheShadows_01</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\InTheShadows_01\InteractionInterface.h">
+      <Filter>Source\InTheShadows_01</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\InTheShadows_01\InteractionWidget.cpp">
+      <Filter>Source\InTheShadows_01</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\InTheShadows_01\InteractionWidget.h">
+      <Filter>Source\InTheShadows_01</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\InTheShadows_01\InterfaceTestActor.cpp">
+      <Filter>Source\InTheShadows_01</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\InTheShadows_01\InterfaceTestActor.h">
+      <Filter>Source\InTheShadows_01</Filter>
+    </ClInclude>
     <None Include="..\..\Source\InTheShadows_01\InTheShadows_01.Build.cs">
       <Filter>Source\InTheShadows_01</Filter>
     </None>
@@ -1530,6 +1555,12 @@
       <Filter>Source\InTheShadows_01</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\InTheShadows_01\ItemDataStructs.h">
+      <Filter>Source\InTheShadows_01</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\InTheShadows_01\MainMenu.cpp">
+      <Filter>Source\InTheShadows_01</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\InTheShadows_01\MainMenu.h">
       <Filter>Source\InTheShadows_01</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\InTheShadows_01\MinimalLevelGameMode.cpp">

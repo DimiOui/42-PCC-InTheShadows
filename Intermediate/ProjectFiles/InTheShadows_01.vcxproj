@@ -316,6 +316,7 @@
     <None Include="..\..\.gitattributes"/>
     <None Include="..\..\.gitignore"/>
     <None Include="..\..\.vsconfig"/>
+    <None Include="..\..\InTheShadows_01.sln.DotSettings.user"/>
     <None Include="..\..\README.md"/>
     <None Include="..\..\shadertoolsconfig.json"/>
     <None Include="..\..\Config\DefaultEditor.ini"/>
@@ -1013,6 +1014,12 @@
       <AdditionalOptions>$(ClCompile_AdditionalOptions_1)</AdditionalOptions>
     </ClCompile>
     <ClInclude Include="..\..\Source\InTheShadows_01Editor\MoveComponentVisualizer.h"/>
+    <ClCompile Include="..\..\Source\InTheShadows_01\CharacterHUD.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_6)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_7)</ForcedIncludeFiles>
+      <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\InTheShadows_01\CharacterHUD.h"/>
     <ClCompile Include="..\..\Source\InTheShadows_01\CollectableActor.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_6)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_7)</ForcedIncludeFiles>
@@ -1049,6 +1056,24 @@
       <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ClInclude Include="..\..\Source\InTheShadows_01\GameCharacterTwo.h"/>
+    <ClCompile Include="..\..\Source\InTheShadows_01\InteractionInterface.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_6)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_7)</ForcedIncludeFiles>
+      <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\InTheShadows_01\InteractionInterface.h"/>
+    <ClCompile Include="..\..\Source\InTheShadows_01\InteractionWidget.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_6)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_7)</ForcedIncludeFiles>
+      <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\InTheShadows_01\InteractionWidget.h"/>
+    <ClCompile Include="..\..\Source\InTheShadows_01\InterfaceTestActor.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_6)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_7)</ForcedIncludeFiles>
+      <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\InTheShadows_01\InterfaceTestActor.h"/>
     <None Include="..\..\Source\InTheShadows_01\InTheShadows_01.Build.cs"/>
     <ClCompile Include="..\..\Source\InTheShadows_01\InTheShadows_01.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_6)</AdditionalIncludeDirectories>
@@ -1057,6 +1082,12 @@
     </ClCompile>
     <ClInclude Include="..\..\Source\InTheShadows_01\InTheShadows_01.h"/>
     <ClInclude Include="..\..\Source\InTheShadows_01\ItemDataStructs.h"/>
+    <ClCompile Include="..\..\Source\InTheShadows_01\MainMenu.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_6)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_7)</ForcedIncludeFiles>
+      <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\InTheShadows_01\MainMenu.h"/>
     <ClCompile Include="..\..\Source\InTheShadows_01\MinimalLevelGameMode.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_6)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_7)</ForcedIncludeFiles>

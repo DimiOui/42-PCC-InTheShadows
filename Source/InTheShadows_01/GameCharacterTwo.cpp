@@ -8,6 +8,8 @@
 #include "EnhancedInputComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "DrawDebugHelpers.h"
+#include "CharacterHUD.h"
 
 // Sets default values
 AGameCharacterTwo::AGameCharacterTwo()
@@ -22,18 +24,25 @@ AGameCharacterTwo::AGameCharacterTwo()
 	//Setup camera and camera boom
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(GetCapsuleComponent());
-	CameraBoom->TargetArmLength = 300.0f;
+	CameraBoom->TargetArmLength = 0.0f;
 	CameraBoom->bUsePawnControlRotation = true;
 
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	FollowCamera->bUsePawnControlRotation = false;
+
+	// Setup Interaction
+	InteractionCheckFrequency = 0.1f;
+	InteractionCheckDistance = 225.0f; // Tweak this value
+	BaseEyeHeight = 30.0f; // Tweak this value
 }
 
 // Called when the game starts or when spawned
 void AGameCharacterTwo::BeginPlay()
 {
 	Super::BeginPlay();
+
+	HUD = Cast<ACharacterHUD>(GetWorld()->GetFirstPlayerController()->GetHUD());
 
 	if (APlayerController* PlayerController = Cast<APlayerController>(GetController()))
 	{
@@ -45,16 +54,18 @@ void AGameCharacterTwo::BeginPlay()
 	}
 }
 
+// Movement
+
+// Setup example for a float 1D axis for forward/backward movement
+
+/*const float AxisValue = Value.Get<float>();
+if (Controller && AxisValue != 0.0f)
+{
+	AddMovementInput(GetActorForwardVector(), AxisValue);
+}*/
+
 void AGameCharacterTwo::Move(const FInputActionValue& Value)
 {
-	// Setup example for a float 1D axis for forward/backward movement
-
-	/*const float AxisValue = Value.Get<float>();
-	if (Controller && AxisValue != 0.0f)
-	{
-		AddMovementInput(GetActorForwardVector(), AxisValue);
-	}*/
-
 	const FVector2D MoveAxisValue = Value.Get<FVector2D>();
 	if (GetController() && !MoveAxisValue.IsZero())
 	{
@@ -73,18 +84,120 @@ void AGameCharacterTwo::Look(const FInputActionValue& Value)
 	}
 }
 
-void AGameCharacterTwo::Interact(const FInputActionValue& Value)
+// Interaction
+void AGameCharacterTwo::PerformInteractionCheck()
 {
-	if (const bool CurrentValue = Value.Get<bool>())
+	InteractionData.LastInteractionCheckTime = GetWorld()->GetTimeSeconds();
+
+	FVector TraceStart{GetPawnViewLocation()};
+	FVector TraceEnd{TraceStart + GetViewRotation().Vector() * InteractionCheckDistance};
+
+	DrawDebugLine(GetWorld(), TraceStart, TraceEnd, FColor::Red, false, 1.0f);
+
+	FCollisionQueryParams QueryParams;
+	QueryParams.AddIgnoredActor(this);
+	FHitResult HitResult;
+
+	if (GetWorld()->LineTraceSingleByChannel(HitResult, TraceStart, TraceEnd, ECC_Visibility, QueryParams))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Interact"));
+		if (HitResult.GetActor()->GetClass()->ImplementsInterface(UInteractionInterface::StaticClass()))
+		{
+			if (HitResult.GetActor() != InteractionData.CurrentInteractable)
+			{
+				FoundInteractable(HitResult.GetActor());
+				return;
+			}
+
+			if (HitResult.GetActor() == InteractionData.CurrentInteractable)
+				return;
+		}
 	}
+
+	LostInteractable();
+}
+
+void AGameCharacterTwo::FoundInteractable(AActor* NewInteractable)
+{
+	if (IsInteracting())
+		EndInteract();
+
+	if (InteractionData.CurrentInteractable)
+	{
+		// End the previous interactable focus
+		TargetInteractable = InteractionData.CurrentInteractable;
+		TargetInteractable->EndFocus();
+	}
+
+	InteractionData.CurrentInteractable = NewInteractable;
+	TargetInteractable = NewInteractable;
+
+	HUD->UpdateInteractionWidget(&TargetInteractable->InteractableData);
+
+	TargetInteractable->BeginFocus();
+}
+
+void AGameCharacterTwo::LostInteractable()
+{
+	if (IsInteracting())
+		GetWorldTimerManager().ClearTimer(TimerHandle_Interaction);
+
+	if (InteractionData.CurrentInteractable)
+	{
+		if (IsValid(TargetInteractable.GetObject()))
+			TargetInteractable->EndFocus();
+
+		HUD->HideInteractionWidget();
+
+		InteractionData.CurrentInteractable = nullptr;
+		TargetInteractable = nullptr;
+	}
+}
+
+void AGameCharacterTwo::BeginInteract()
+{
+	// Verify nothing has changed with the interactable state since beginning of the interaction
+	PerformInteractionCheck();
+
+	if (InteractionData.CurrentInteractable)
+	{
+		if (IsValid(TargetInteractable.GetObject()))
+		{
+			TargetInteractable->BeginInteract();
+
+			if (FMath::IsNearlyZero(TargetInteractable->InteractableData.InteractionDuration, 0.1f)) // Tweak this
+				Interact();
+			else
+				GetWorldTimerManager().SetTimer(TimerHandle_Interaction,
+				                                this, &AGameCharacterTwo::Interact,
+				                                TargetInteractable->InteractableData.InteractionDuration,
+				                                false);
+		}
+	}
+}
+
+void AGameCharacterTwo::EndInteract()
+{
+	GetWorldTimerManager().ClearTimer(TimerHandle_Interaction);
+
+	if (IsValid(TargetInteractable.GetObject()))
+		TargetInteractable->EndInteract();
+}
+
+void AGameCharacterTwo::Interact()
+{
+	GetWorldTimerManager().ClearTimer(TimerHandle_Interaction);
+
+	if (IsValid(TargetInteractable.GetObject()))
+		TargetInteractable->Interact(this);
 }
 
 // Called every frame
 void AGameCharacterTwo::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (GetWorld()->TimeSince(InteractionData.LastInteractionCheckTime) >= InteractionCheckFrequency)
+		PerformInteractionCheck();
 }
 
 // Called to bind functionality to input
@@ -102,7 +215,10 @@ void AGameCharacterTwo::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AGameCharacterTwo::Look);
 
 		// Interact
-		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Triggered, this,
-		                                   &AGameCharacterTwo::Interact);
+		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Started, this,
+		                                   &AGameCharacterTwo::BeginInteract);
+
+		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Completed, this,
+		                                   &AGameCharacterTwo::EndInteract);
 	}
 }

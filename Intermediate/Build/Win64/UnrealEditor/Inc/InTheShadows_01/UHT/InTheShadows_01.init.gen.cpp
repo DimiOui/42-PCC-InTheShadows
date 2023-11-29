@@ -23,13 +23,13 @@ void EmptyLinkFunctionForGeneratedCodeInTheShadows_01_init() {}
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0x09192C55,
-				0xBFAE62E7,
+				0x68E0EC14,
+				0x69791330,
 				METADATA_PARAMS(0, nullptr)
 			};
 			UECodeGen_Private::ConstructUPackage(Z_Registration_Info_UPackage__Script_InTheShadows_01.OuterSingleton, PackageParams);
 		}
 		return Z_Registration_Info_UPackage__Script_InTheShadows_01.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_InTheShadows_01(Z_Construct_UPackage__Script_InTheShadows_01, TEXT("/Script/InTheShadows_01"), Z_Registration_Info_UPackage__Script_InTheShadows_01, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x09192C55, 0xBFAE62E7));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_InTheShadows_01(Z_Construct_UPackage__Script_InTheShadows_01, TEXT("/Script/InTheShadows_01"), Z_Registration_Info_UPackage__Script_InTheShadows_01, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x68E0EC14, 0x69791330));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

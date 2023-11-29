@@ -5,7 +5,7 @@
 #include "Components/SphereComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/RotatingMovementComponent.h"
-#include "GameCharacterTwo.h"
+
 
 // Sets default values
 AFloatingPuzzle::AFloatingPuzzle()
@@ -17,8 +17,8 @@ AFloatingPuzzle::AFloatingPuzzle()
 	SphereCollider->SetupAttachment(RootComponent);
 	SphereCollider->InitSphereRadius(64.f);
 	SphereCollider->SetCollisionProfileName(TEXT("Trigger"));
-	SphereCollider->OnComponentBeginOverlap.AddDynamic(this, &AFloatingPuzzle::OnSphereBeginOverlap);
-	SphereCollider->OnComponentEndOverlap.AddDynamic(this, &AFloatingPuzzle::OnSphereEndOverlap);
+	// SphereCollider->OnComponentBeginOverlap.AddDynamic(this, &AFloatingPuzzle::OnSphereBeginOverlap);
+	// SphereCollider->OnComponentEndOverlap.AddDynamic(this, &AFloatingPuzzle::OnSphereEndOverlap);
 
 	RotatingMovement = CreateDefaultSubobject<URotatingMovementComponent>("RotatingMovement");
 
@@ -32,6 +32,8 @@ void AFloatingPuzzle::BeginPlay()
 {
 	Super::BeginPlay();
 
+	InteractableData = InstanceInteractableData;
+	
 	if (FloatingCurve && bIsFloating)
 	{
 		StartLocation = GetActorLocation().Z;
@@ -45,23 +47,45 @@ void AFloatingPuzzle::BeginPlay()
 	}
 }
 
-void AFloatingPuzzle::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-                                           UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep,
-                                           const FHitResult& SweepResult)
+// void AFloatingPuzzle::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+//                                            UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep,
+//                                            const FHitResult& SweepResult)
+// {
+// 	if (AGameCharacterTwo* GameCharacter = Cast<AGameCharacterTwo>(OtherActor))
+// 	{
+// 	}
+// }
+
+// void AFloatingPuzzle::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+//                                          UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+// {
+// }
+
+void AFloatingPuzzle::BeginFocus()
 {
-	if (AGameCharacterTwo* GameCharacter = Cast<AGameCharacterTwo>(OtherActor))
-	{
-		//
-	}
+	if (StaticMesh)
+		StaticMesh->SetRenderCustomDepth(true);
 }
 
-void AFloatingPuzzle::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-                                         UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+void AFloatingPuzzle::EndFocus()
 {
-	if (AGameCharacterTwo* GameCharacter = Cast<AGameCharacterTwo>(OtherActor))
-	{
-		//
-	}
+	if (StaticMesh)
+		StaticMesh->SetRenderCustomDepth(false);
+}
+
+void AFloatingPuzzle::BeginInteract()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Calling BeginInteract override on FloatingPuzzle actor"));
+}
+
+void AFloatingPuzzle::EndInteract()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Calling EndInteract override on FloatingPuzzle actor"));
+}
+
+void AFloatingPuzzle::Interact(AGameCharacterTwo* GameCharacterTwo)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Calling Interact override on FloatingPuzzle actor"));
 }
 
 void AFloatingPuzzle::HandleFloatingTimelineProgress(float Value)

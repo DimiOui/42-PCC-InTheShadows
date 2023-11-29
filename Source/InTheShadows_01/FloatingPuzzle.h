@@ -5,8 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Components/TimelineComponent.h"
+#include "InteractionInterface.h"
 #include "FloatingPuzzle.generated.h"
-
 
 class USphereComponent;
 class UStaticMeshComponent;
@@ -14,7 +14,7 @@ class URotatingMovementComponent;
 class UTimelineComponent;
 
 UCLASS(Blueprintable)
-class INTHESHADOWS_01_API AFloatingPuzzle : public AActor
+class INTHESHADOWS_01_API AFloatingPuzzle : public AActor, public IInteractionInterface
 {
 	GENERATED_BODY()
 
@@ -29,8 +29,10 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-
 	// Components
+	UPROPERTY(EditInstanceOnly, Category = "Interactable")
+	FInteractableData InstanceInteractableData;
+	
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 	USphereComponent* SphereCollider;
 
@@ -58,14 +60,26 @@ protected:
 	void HandleFloatingTimelineProgress(float Value);
 
 	// Overlap Events
-	UFUNCTION()
-	void OnSphereBeginOverlap(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor,
-	                          class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep,
-	                          const FHitResult& SweepResult);
+	// UFUNCTION()
+	// void OnSphereBeginOverlap(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor,
+	//                           class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep,
+	//                           const FHitResult& SweepResult);
+	//
+	// UFUNCTION()
+	// void OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+	//                         UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
-	UFUNCTION()
-	void OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-	                        UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+	// Interface Override
+	UFUNCTION(BlueprintCallable)
+	virtual void BeginFocus() override;
+	UFUNCTION(BlueprintCallable)
+	virtual void EndFocus() override;
+	UFUNCTION(BlueprintCallable)
+	virtual void BeginInteract() override;
+	UFUNCTION(BlueprintCallable)
+	virtual void EndInteract() override;
+	UFUNCTION(BlueprintCallable)
+	virtual void Interact(AGameCharacterTwo* GameCharacterTwo) override;
 
 private:
 	bool bIsFloating = false;
