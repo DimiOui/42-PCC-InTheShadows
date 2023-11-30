@@ -13,6 +13,9 @@ class UStaticMeshComponent;
 class URotatingMovementComponent;
 class UTimelineComponent;
 
+class UDataTable;
+class UItemBase;
+
 UCLASS(Blueprintable)
 class INTHESHADOWS_01_API AFloatingPuzzle : public AActor, public IInteractionInterface
 {
@@ -25,14 +28,27 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	// Test
+	FORCEINLINE UItemBase* GetPuzzleReference() const { return PuzzleReference; }
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	// Test
+	UPROPERTY(EditIstanceOnly, Category = "Puzzle | Data")
+	UDataTable* PuzzleDataTable;
+
+	UPROPERTY(EditIstanceOnly, Category = "Puzzle | Data")
+	FName DesiredPuzzleID;
+
+	UPROPERTY(VisibleIstanceOnly, Category = "Puzzle | Data")
+	UItemBase* PuzzleReference;
+
 	// Components
-	UPROPERTY(EditInstanceOnly, Category = "Interactable")
+	UPROPERTY(VisibleInstanceOnly, Category = "Interactable")
 	FInteractableData InstanceInteractableData;
-	
+
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 	USphereComponent* SphereCollider;
 
@@ -59,16 +75,6 @@ protected:
 	UFUNCTION()
 	void HandleFloatingTimelineProgress(float Value);
 
-	// Overlap Events
-	// UFUNCTION()
-	// void OnSphereBeginOverlap(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor,
-	//                           class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep,
-	//                           const FHitResult& SweepResult);
-	//
-	// UFUNCTION()
-	// void OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-	//                         UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
-
 	// Interface Override
 	UFUNCTION(BlueprintCallable)
 	virtual void BeginFocus() override;
@@ -81,6 +87,16 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	virtual void Interact(AGameCharacterTwo* GameCharacterTwo) override;
 
+	// Overlap Events
+	// UFUNCTION()
+	// void OnSphereBeginOverlap(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor,
+	//                           class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep,
+	//                           const FHitResult& SweepResult);
+	//
+	// UFUNCTION()
+	// void OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+	//                         UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+	
 private:
 	bool bIsFloating = false;
 	float StartLocation;

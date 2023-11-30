@@ -10,7 +10,7 @@
 // Sets default values
 AFloatingPuzzle::AFloatingPuzzle()
 {
-	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>("StaticMesh");
+	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>("PuzzleMesh");
 	RootComponent = StaticMesh;
 
 	SphereCollider = CreateDefaultSubobject<USphereComponent>("Sphere");
@@ -71,15 +71,19 @@ void AFloatingPuzzle::EndFocus()
 {
 	if (StaticMesh)
 		StaticMesh->SetRenderCustomDepth(false);
+	if (IsInteracting)
+		EndInteract();
 }
 
 void AFloatingPuzzle::BeginInteract()
 {
+	IsInteracting = true;
 	UE_LOG(LogTemp, Warning, TEXT("Calling BeginInteract override on FloatingPuzzle actor"));
 }
 
 void AFloatingPuzzle::EndInteract()
 {
+	IsInteracting = false;
 	UE_LOG(LogTemp, Warning, TEXT("Calling EndInteract override on FloatingPuzzle actor"));
 }
 

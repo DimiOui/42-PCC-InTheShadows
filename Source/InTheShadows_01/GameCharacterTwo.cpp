@@ -37,6 +37,15 @@ AGameCharacterTwo::AGameCharacterTwo()
 	BaseEyeHeight = 30.0f; // Tweak this value
 }
 
+// Called every frame
+void AGameCharacterTwo::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	if (GetWorld()->TimeSince(InteractionData.LastInteractionCheckTime) > InteractionCheckFrequency)
+		PerformInteractionCheck();
+}
+
 // Called when the game starts or when spawned
 void AGameCharacterTwo::BeginPlay()
 {
@@ -52,6 +61,116 @@ void AGameCharacterTwo::BeginPlay()
 			Subsystem->AddMappingContext(BaseMappingContext, 0);
 		}
 	}
+}
+
+// Interaction
+void AGameCharacterTwo::PerformInteractionCheck()
+{
+	InteractionData.LastInteractionCheckTime = GetWorld()->GetTimeSeconds();
+
+	FVector TraceStart{GetPawnViewLocation()};
+	FVector TraceEnd{TraceStart + GetViewRotation().Vector() * InteractionCheckDistance};
+	float TraceRadius = 50.f;
+
+	DrawDebugLine(GetWorld(), TraceStart, TraceEnd, FColor::Red, false, 1.0f);
+
+	FCollisionQueryParams QueryParams;
+	QueryParams.AddIgnoredActor(this);
+	FHitResult HitResult;
+	
+	if (GetWorld()->SweepSingleByChannel(HitResult, TraceStart, TraceEnd, FQuat::Identity, ECC_Visibility, FCollisionShape::MakeSphere(TraceRadius), QueryParams))
+	{
+		if (HitResult.GetActor()->GetClass()->ImplementsInterface(UInteractionInterface::StaticClass()))
+		{
+			if (HitResult.GetActor() != InteractionData.CurrentInteractable)
+			{
+				FoundInteractable(HitResult.GetActor());
+				return;
+			}
+			if (HitResult.GetActor() == InteractionData.CurrentInteractable)
+				return;
+		}
+	}
+	LostInteractable();
+}
+
+void AGameCharacterTwo::FoundInteractable(AActor* NewInteractable)
+{
+	if (IsInteracting())
+		EndInteract();
+
+	if (InteractionData.CurrentInteractable)
+	{
+		// End the previous interactable focus
+		TargetInteractable = InteractionData.CurrentInteractable;
+		TargetInteractable->EndFocus();
+	}
+
+	InteractionData.CurrentInteractable = NewInteractable;
+	TargetInteractable = NewInteractable;
+
+	HUD->UpdateInteractionWidget(&TargetInteractable->InteractableData);
+
+	TargetInteractable->BeginFocus();
+}
+
+void AGameCharacterTwo::LostInteractable()
+{
+	if (IsInteracting())
+	{
+		GetWorldTimerManager().ClearTimer(TimerHandle_Interaction);
+	}
+
+	if (InteractionData.CurrentInteractable)
+	{
+		if (IsValid(TargetInteractable.GetObject()))
+			TargetInteractable->EndFocus();
+
+		HUD->HideInteractionWidget();
+
+		InteractionData.CurrentInteractable = nullptr;
+		TargetInteractable = nullptr;
+	}
+}
+
+void AGameCharacterTwo::BeginInteract()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Calling BeginInteract override on GameCharacterTwo actor"));
+	// Verify nothing has changed with the interactable state since beginning of the interaction
+	PerformInteractionCheck();
+
+	if (InteractionData.CurrentInteractable)
+	{
+		if (IsValid(TargetInteractable.GetObject()))
+		{
+			TargetInteractable->BeginInteract();
+
+			if (FMath::IsNearlyZero(TargetInteractable->InteractableData.InteractionDuration, 0.1f)) // Tweak this
+				Interact();
+			else
+				GetWorldTimerManager().SetTimer(TimerHandle_Interaction,
+				                                this, &AGameCharacterTwo::Interact,
+				                                TargetInteractable->InteractableData.InteractionDuration,
+				                                false);
+		}
+	}
+}
+
+void AGameCharacterTwo::EndInteract()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Calling EndInteract override on GameCharacterTwo actor"));
+	GetWorldTimerManager().ClearTimer(TimerHandle_Interaction);
+
+	if (IsValid(TargetInteractable.GetObject()))
+		TargetInteractable->EndInteract();
+}
+
+void AGameCharacterTwo::Interact()
+{
+	GetWorldTimerManager().ClearTimer(TimerHandle_Interaction);
+
+	if (IsValid(TargetInteractable.GetObject()))
+		TargetInteractable->Interact(this);
 }
 
 // Movement
@@ -82,122 +201,6 @@ void AGameCharacterTwo::Look(const FInputActionValue& Value)
 		AddControllerYawInput(LookAxisValue.X);
 		AddControllerPitchInput(LookAxisValue.Y);
 	}
-}
-
-// Interaction
-void AGameCharacterTwo::PerformInteractionCheck()
-{
-	InteractionData.LastInteractionCheckTime = GetWorld()->GetTimeSeconds();
-
-	FVector TraceStart{GetPawnViewLocation()};
-	FVector TraceEnd{TraceStart + GetViewRotation().Vector() * InteractionCheckDistance};
-
-	DrawDebugLine(GetWorld(), TraceStart, TraceEnd, FColor::Red, false, 1.0f);
-
-	FCollisionQueryParams QueryParams;
-	QueryParams.AddIgnoredActor(this);
-	FHitResult HitResult;
-
-	if (GetWorld()->LineTraceSingleByChannel(HitResult, TraceStart, TraceEnd, ECC_Visibility, QueryParams))
-	{
-		if (HitResult.GetActor()->GetClass()->ImplementsInterface(UInteractionInterface::StaticClass()))
-		{
-			if (HitResult.GetActor() != InteractionData.CurrentInteractable)
-			{
-				FoundInteractable(HitResult.GetActor());
-				return;
-			}
-
-			if (HitResult.GetActor() == InteractionData.CurrentInteractable)
-				return;
-		}
-	}
-
-	LostInteractable();
-}
-
-void AGameCharacterTwo::FoundInteractable(AActor* NewInteractable)
-{
-	if (IsInteracting())
-		EndInteract();
-
-	if (InteractionData.CurrentInteractable)
-	{
-		// End the previous interactable focus
-		TargetInteractable = InteractionData.CurrentInteractable;
-		TargetInteractable->EndFocus();
-	}
-
-	InteractionData.CurrentInteractable = NewInteractable;
-	TargetInteractable = NewInteractable;
-
-	HUD->UpdateInteractionWidget(&TargetInteractable->InteractableData);
-
-	TargetInteractable->BeginFocus();
-}
-
-void AGameCharacterTwo::LostInteractable()
-{
-	if (IsInteracting())
-		GetWorldTimerManager().ClearTimer(TimerHandle_Interaction);
-
-	if (InteractionData.CurrentInteractable)
-	{
-		if (IsValid(TargetInteractable.GetObject()))
-			TargetInteractable->EndFocus();
-
-		HUD->HideInteractionWidget();
-
-		InteractionData.CurrentInteractable = nullptr;
-		TargetInteractable = nullptr;
-	}
-}
-
-void AGameCharacterTwo::BeginInteract()
-{
-	// Verify nothing has changed with the interactable state since beginning of the interaction
-	PerformInteractionCheck();
-
-	if (InteractionData.CurrentInteractable)
-	{
-		if (IsValid(TargetInteractable.GetObject()))
-		{
-			TargetInteractable->BeginInteract();
-
-			if (FMath::IsNearlyZero(TargetInteractable->InteractableData.InteractionDuration, 0.1f)) // Tweak this
-				Interact();
-			else
-				GetWorldTimerManager().SetTimer(TimerHandle_Interaction,
-				                                this, &AGameCharacterTwo::Interact,
-				                                TargetInteractable->InteractableData.InteractionDuration,
-				                                false);
-		}
-	}
-}
-
-void AGameCharacterTwo::EndInteract()
-{
-	GetWorldTimerManager().ClearTimer(TimerHandle_Interaction);
-
-	if (IsValid(TargetInteractable.GetObject()))
-		TargetInteractable->EndInteract();
-}
-
-void AGameCharacterTwo::Interact()
-{
-	GetWorldTimerManager().ClearTimer(TimerHandle_Interaction);
-
-	if (IsValid(TargetInteractable.GetObject()))
-		TargetInteractable->Interact(this);
-}
-
-// Called every frame
-void AGameCharacterTwo::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-	if (GetWorld()->TimeSince(InteractionData.LastInteractionCheckTime) >= InteractionCheckFrequency)
-		PerformInteractionCheck();
 }
 
 // Called to bind functionality to input

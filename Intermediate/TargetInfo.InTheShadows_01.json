@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "InTheShadows_01",
+			"Path": "..\\Source\\InTheShadows_01.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "InTheShadows_01Editor",
+			"Path": "..\\Source\\InTheShadows_01Editor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

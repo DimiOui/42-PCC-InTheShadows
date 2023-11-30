@@ -64,5 +64,7 @@ public:
 	virtual void EndInteract();
 	virtual void Interact(AGameCharacterTwo* GameCharacterTwo);
 
+	bool IsInteracting;
+
 	FInteractableData InteractableData;
 };

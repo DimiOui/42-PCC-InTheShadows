@@ -37,17 +37,20 @@ void AInterfaceTestActor::EndFocus()
 {
 	if (Mesh)
 		Mesh->SetRenderCustomDepth(false);
+	if (IsInteracting)
+		EndInteract();
 }
 
 void AInterfaceTestActor::BeginInteract()
 {
+	IsInteracting = true;
 	UE_LOG(LogTemp, Warning, TEXT("Calling BeginInteract override on interface test actor"));
 }
 
 void AInterfaceTestActor::EndInteract()
 {
+	IsInteracting = false;
 	UE_LOG(LogTemp, Warning, TEXT("Calling EndInteract override on interface test actor"));
-	
 }
 
 void AInterfaceTestActor::Interact(AGameCharacterTwo* GameCharacterTwo)
