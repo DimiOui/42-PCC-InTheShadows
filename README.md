@@ -8,7 +8,6 @@ The primary objectives of this project were to:
 - Develop proficiency in integrating C++ classes and UE5 Blueprint system.
 - Experiment with various UE5 features to build a foundational knowledge base for future game development projects.
 
-
-
-
+<br>
+<br>
 This project was lately corrupted and can't build with the full features. The source files still serves as good examples of how I could implement different features in UE5.
