@@ -1,6 +1,5 @@
 # UE5 Training Ground
 
-## Overview
 This project was developed as part of my exploration into Unreal Engine 5.3.2. The project's genesis was a blank slate, providing an unbounded canvas to experiment with C++ classes and Blueprints within the Unreal Engine environment.
 
 ## Project Goals
